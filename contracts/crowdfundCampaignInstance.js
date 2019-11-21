@@ -221,6 +221,11 @@ const abi =
 				"internalType": "uint256",
 				"name": "voteCounter",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "campaignDonators",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -311,6 +316,21 @@ const abi =
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalDonations",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,

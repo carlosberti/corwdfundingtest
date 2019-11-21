@@ -69,6 +69,7 @@ contract Campaign
  
     uint public completionDate;
     uint public campaignDeadline;
+    uint public totalDonations;
 
     State public state = State.Fundraising;
     mapping (address => uint) public contributions;
@@ -118,6 +119,8 @@ contract Campaign
 
         votingApproved = false;
         voteCount = 0;
+
+        totalDonations = 0;
     }
 
     //Contribuir para a campanha
@@ -127,6 +130,7 @@ contract Campaign
         
         contributions[msg.sender] = contributions[msg.sender].add(msg.value);
         currentBalance = currentBalance.add(msg.value);
+        totalDonations += 1;
         emit FundingReceived(msg.sender, msg.value, currentBalance);
         
         checkCompletion();
@@ -229,10 +233,12 @@ contract Campaign
         uint256 goalAmount,
         
         uint256 deadline,
-        State currentState
+        State currentState,
 
         bool approved,
-        uint256 voteCounter
+        uint256 voteCounter,
+
+        uint campaignDonators
 
     ) {
         campaignOwner = owner;
@@ -244,5 +250,6 @@ contract Campaign
         goalAmount = goal;
         approved = votingApproved;
         voteCounter = voteCount;
+        campaignDonators = totalDonations;
     }
 }

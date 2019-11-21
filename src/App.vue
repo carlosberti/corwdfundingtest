@@ -4,8 +4,7 @@
       <v-container>
         <v-layout text-xs-center wrap>
           <v-flex mb-4>
-            <h1 class="display-2 font-weight-bold mb-3">Crowdfunding</h1>
-            <p class="subheading font-weight-regular">Utilizing Ethereum for Decentralized Crowdfunding</p>
+            <h1 class="display-2 font-weight-bold mb-3">Crowdfunding for Charity</h1>
           </v-flex>
         </v-layout>
 
@@ -165,6 +164,10 @@
                     <span>{{ campaign.campaignDesc.substring(0, 100) }}</span>
                     <span v-if="campaign.campaignDesc.length > 100">
                       ... <a @click="campaignData[index].dialog = true">[Show full]</a>
+                    </span>
+                    <br/><br/>
+                    <span class="font-weight-bold"">
+                      Donations: {{ campaign.campaignDonators}}
                     </span>
                     <br/><br/>
                     <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
@@ -449,7 +452,7 @@ export default {
       if (!this.campaignData[index].fundAmount) {
         return;
       }
-
+      console.log(this.campaignData[index].campaignDonators);
       const campaignContract = this.campaignData[index].contract;
       this.campaignData[index].isLoading = true;
       campaignContract.methods.contribute().send({

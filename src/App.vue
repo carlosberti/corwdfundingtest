@@ -51,7 +51,7 @@
         </v-layout>
       </v-container>
 
-      <v-container grid-list-lg>
+      <v-container style="max-width: 400px;" grid-list-lg>
         <h1 class="display-1 font-weight-bold mb-3">Campaigns Pending Approval</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === false" :key="index" xs12>
@@ -103,19 +103,17 @@
                     vote
                   </v-btn>
                 </v-flex>
-                <v-card-actions v-if="campaign.currentState == 0" class="text-xs-center">
-                  <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.currentAmount / 10**18 }} ETH
-                  </span>
+                <v-card-actions style="margin-left: 30px" v-if="campaign.currentState == 0" class="text-xs-center">
                   <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.currentAmount / campaign.goalAmount) * 100"
                     size="150"
+                    rotate="180"
                     width="10"
                   ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.goalAmount / 10**18 }} ETH
+                    {{ campaign.currentAmount / 10**18 }} ETH / {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
                 </v-card-actions>
               </v-card>
@@ -124,7 +122,7 @@
         </v-layout>
       </v-container>
 
-      <v-container grid-list-lg>
+      <v-container style="max-width: 400px;" grid-list-md>
         <h1 class="display-1 font-weight-bold mb-3">Campaigns OnGoing</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === true" :key="index" xs12>
@@ -206,19 +204,18 @@
                     Get refund
                   </v-btn>
                 </v-flex>
-                <v-card-actions v-if="campaign.currentState == 0" class="text-xs-center">
-                  <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.currentAmount / 10**18 }} ETH
-                  </span>
+                <v-card-actions style="margin-left: 30px" v-if="campaign.currentState == 0" class="text-xs-center">
+
                   <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.currentAmount / campaign.goalAmount) * 100"
                     size="150"
+                    rotate="180"
                     width="10"
                   ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.goalAmount / 10**18 }} ETH
+                    {{ campaign.currentAmount / 10**18 }} ETH / {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
                 </v-card-actions>
               </v-card>
@@ -226,9 +223,9 @@
           </v-flex>
         </v-layout>
       </v-container>
-      <v-container grid-list-lg>
+      <v-container style="max-width: 400px;" grid-list-lg>
         <h1 class="display-1 font-weight-bold mb-3">Campaigns Completed</h1>
-        <v-layout row wrap>
+        <v-layout align-center="true" align-self-center="true" row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Completed'" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
               <v-card>
@@ -273,18 +270,17 @@
                     <small v-if="campaign.currentState == 2">has been achieved</small>
                   </div>
                 </v-card-title>
-                <v-card-actions v-if="campaign.currentState == 2" class="text-xs-center">
-                  <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.goalAmount / 10**18 }} ETH
-                  </span>
+                <v-card-actions style="margin-left: 30px" v-if="campaign.currentState == 2" class="text-xs-center">
                   <v-progress-circular
                     width="10"
                     size="150"
+                    rotate="180"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.goalAmount / campaign.goalAmount) * 100"
                   ></v-progress-circular>
+                  <br/><br/>
                   <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.goalAmount / 10**18 }} ETH
+                    {{ campaign.goalAmount / 10**18 }} ETH / {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
                 </v-card-actions>
               </v-card>
@@ -292,7 +288,7 @@
           </v-flex>
         </v-layout>
       </v-container>
-      <v-container grid-list-lg>
+      <v-container style="max-width: 400px;" grid-list-lg>
         <h1 class="display-1 font-weight-bold mb-3">Campaigns Expired</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Expired'" :key="index" xs12>
@@ -355,19 +351,17 @@
                     Get refund
                   </v-btn>
                 </v-flex>
-                <v-card-actions v-if="campaign.currentState == 3" class="text-xs-center">
-                  <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.currentAmount / 10**18 }} ETH
-                  </span>
+                <v-card-actions style="margin-left: 30px" v-if="campaign.currentState == 3" class="text-xs-center">
                   <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.currentAmount / campaign.goalAmount) * 100"
                     size="150"
+                    rotate="180"
                     width="10"
                   ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
-                    {{ campaign.goalAmount / 10**18 }} ETH
+                    {{ campaign.currentAmount / 10**18 }} ETH / {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
                 </v-card-actions>
               </v-card>

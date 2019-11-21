@@ -421,7 +421,6 @@ export default {
         from: this.account,
       }).then(() => {
         this.campaignData[index].isLoading = false;
-        this.campaignData[index].approved = true;
       });
     },
     startCampaign() {

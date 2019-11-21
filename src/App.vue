@@ -83,10 +83,7 @@
                       {{ campaign.campaignTitle }}
                     </div>
                     <br/>
-                    <span>{{ campaign.campaignDesc.substring(0, 100) }}</span>
-                    <span v-if="campaign.campaignDesc.length > 100">
-                      ... <a @click="campaignData[index].dialog = true">[Show full]</a>
-                    </span>
+                    <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
                     <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>
@@ -165,10 +162,7 @@
                       {{ campaign.campaignTitle }}
                     </div>
                     <br/>
-                    <span>{{ campaign.campaignDesc.substring(0, 100) }}</span>
-                    <span v-if="campaign.campaignDesc.length > 100">
-                      ... <a @click="campaignData[index].dialog = true">[Show full]</a>
-                    </span>
+                    <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
                     <span class="font-weight-bold"">
                       Donations: {{ campaign.campaignDonators}}
@@ -270,10 +264,7 @@
                       {{ campaign.campaignTitle }}
                     </div>
                     <br/>
-                    <span>{{ campaign.campaignDesc.substring(0, 100) }}</span>
-                    <span v-if="campaign.campaignDesc.length > 100">
-                      ... <a @click="campaignData[index].dialog = true">[Show full]</a>
-                    </span>
+                    <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
                     <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>
@@ -339,10 +330,7 @@
                       {{ campaign.campaignTitle }}
                     </div>
                     <br/>
-                    <span>{{ campaign.campaignDesc.substring(0, 100) }}</span>
-                    <span v-if="campaign.campaignDesc.length > 100">
-                      ... <a @click="campaignData[index].dialog = true">[Show full]</a>
-                    </span>
+                    <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
                     <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>

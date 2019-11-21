@@ -1,7 +1,7 @@
 /* eslint-disable */
 import web3 from './web3';
 
-const address = '0xF794Aa54df2C32BCd59ab924fb533Af6BD0CBa6a';
+const address = '0x740c8109a2A3c5B9f317DbBba93CbC6ae5c3686E';
 
 const abi = 
 [
@@ -49,6 +49,21 @@ const abi =
 		"type": "event"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "returnAllCampaigns",
+		"outputs": [
+			{
+				"internalType": "contract Campaign[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -76,21 +91,6 @@ const abi =
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "returnAllCampaigns",
-		"outputs": [
-			{
-				"internalType": "contract Campaign[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	}
 ]

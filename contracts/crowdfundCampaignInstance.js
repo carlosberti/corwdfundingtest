@@ -211,6 +211,16 @@ const abi =
 				"internalType": "enum Campaign.State",
 				"name": "currentState",
 				"type": "uint8"
+			},
+			{
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "voteCounter",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -301,6 +311,45 @@ const abi =
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "voteCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "votingApproved",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"payable": false,

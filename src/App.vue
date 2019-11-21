@@ -53,9 +53,82 @@
       </v-container>
 
       <v-container grid-list-lg>
+        <h1 class="display-1 font-weight-bold mb-3">Campaigns Pending Approval</h1>
+        <v-layout row wrap>
+          <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === false" :key="index" xs12>
+            <v-dialog v-model="campaign.dialog" width="800">
+              <v-card>
+                <v-card-title class="headline font-weight-bold">
+                  {{ campaign.campaignTitle }}
+                </v-card-title>
+                <v-card-text>
+                  {{ campaign.campaignDesc }}
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" flat="flat" @click="campaignData[index].dialog = false">
+                    Close
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+            <v-hover>
+              <v-card
+                slot-scope="{ hover }"
+                :class="`elevation-${hover ? 10 : 2}`"
+              >
+                <v-card-title primary-title>
+                  <div>
+                    <div class="headline font-weight-bold">
+                      {{ campaign.campaignTitle }}
+                    </div>
+                    <br/>
+                    <span>{{ campaign.campaignDesc.substring(0, 100) }}</span>
+                    <span v-if="campaign.campaignDesc.length > 100">
+                      ... <a @click="campaignData[index].dialog = true">[Show full]</a>
+                    </span>
+                    <br/><br/>
+                    <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
+                    <br/><br/>
+                    <small>Goal of <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
+                    <small v-if="campaign.currentState == 1">wasn't achieved before deadline</small>
+                    <small v-if="campaign.currentState == 2">has been achieved</small>
+                  </div>
+                </v-card-title>
+                <v-flex
+                  class="d-flex ml-3" xs12 sm6 md3>
+                  <v-btn
+                    class="mt-3"
+                    color="light-blue darken-1 white--text"
+                    @click="vote(index)"
+                    :loading="campaign.isLoading"
+                  >
+                    vote
+                  </v-btn>
+                </v-flex>
+                <v-card-actions v-if="campaign.currentState == 0" class="text-xs-center">
+                  <span class="font-weight-bold" style="width: 200px;">
+                    {{ campaign.currentAmount / 10**18 }} ETH
+                  </span>
+                  <v-progress-linear
+                    height="10"
+                    :color="stateMap[campaign.currentState].color"
+                    :value="(campaign.currentAmount / campaign.goalAmount) * 100"
+                  ></v-progress-linear>
+                  <span class="font-weight-bold" style="width: 200px;">
+                    {{ campaign.goalAmount / 10**18 }} ETH
+                  </span>
+                </v-card-actions>
+              </v-card>
+            </v-hover>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+      <v-container grid-list-lg>
         <h1 class="display-1 font-weight-bold mb-3">Campaigns OnGoing</h1>
         <v-layout row wrap>
-          <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing'" :key="index" xs12>
+          <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === true" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
               <v-card>
                 <v-card-title class="headline font-weight-bold">
@@ -340,6 +413,15 @@ export default {
             this.campaignData.push(campaignInfo); 
           });
         });
+      });
+    },
+    vote(index){
+      this.campaignData[index].isLoading = true;
+      this.campaignData[index].contract.methods.vote().send({
+        from: this.account,
+      }).then(() => {
+        this.campaignData[index].isLoading = false;
+        this.campaignData[index].approved = true;
       });
     },
     startCampaign() {

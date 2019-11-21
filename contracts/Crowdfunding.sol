@@ -1,4 +1,4 @@
-pragma solidity 0.5.4;
+pragma solidity 0.5.13;
 import 'https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/math/SafeMath.sol';
 
 contract Crowdfunding {
@@ -58,6 +58,8 @@ contract Campaign
     }
 
     address payable public owner;
+    address Carlos;
+    address Gabriel;
     
     string public title;
     string public description;
@@ -71,6 +73,8 @@ contract Campaign
     State public state = State.Fundraising;
     mapping (address => uint) public contributions;
 
+    uint public voteCount;
+    bool public votingApproved;
 
     event FundingReceived(address contributor, uint amount, uint currentTotal);
     event ownerPaid(address recipient);
@@ -101,6 +105,9 @@ contract Campaign
     ) public
     {
         owner = campaignOwner;
+
+        Carlos = 0x5600979d097F741c573d46EDb9cABfC75bB566AF;
+        Gabriel = 0x7FFf406d6CA0e40d02112509E2472cB780fCbf88;
         
         title = campaignTitle;
         description = campaignDesc;
@@ -108,6 +115,9 @@ contract Campaign
         goal = goalAmount;
         campaignDeadline = fundRaisingDeadline;
         currentBalance = 0;
+
+        votingApproved = false;
+        voteCount = 0;
     }
 
     //Contribuir para a campanha
@@ -122,6 +132,16 @@ contract Campaign
         checkCompletion();
     }
 
+    function vote() public
+     {
+         require(votingApproved == false);
+         require(msg.sender == Carlos || msg.sender == Gabriel);
+         voteCount += 1;
+         if(voteCount == 2)
+         {
+             votingApproved = true;
+         }
+     }
 
     //Checkout do owner
     function payOut() internal inState(State.Complete) returns (bool) 
@@ -211,6 +231,9 @@ contract Campaign
         uint256 deadline,
         State currentState
 
+        bool approved,
+        uint256 voteCounter
+
     ) {
         campaignOwner = owner;
         campaignTitle = title;
@@ -219,5 +242,7 @@ contract Campaign
         currentState = state;
         currentAmount = currentBalance;
         goalAmount = goal;
+        approved = votingApproved;
+        voteCounter = voteCount;
     }
 }

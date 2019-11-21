@@ -287,7 +287,8 @@
                     {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
                   <v-progress-circular
-                    height="10"
+                    width="10"
+                    size="150"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.goalAmount / campaign.goalAmount) * 100"
                   ></v-progress-circular>

@@ -1,5 +1,5 @@
 <template>
-  <v-app class="blue lighten-3">
+  <v-app style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3gwbFfjdHuTRLcTwPKvmyukXPKyhvF650aaVevI5fQrTL7wgC'); background-repeat: no-repeat; background-size: cover;" >
     <v-content>
       <v-container>
         <v-layout text-xs-center wrap>
@@ -13,7 +13,7 @@
             <v-btn slot="activator" color="primary" dark>Start a Campaign</v-btn>
             <v-card>
               <v-card-title>
-                <span class="headline font-weight-bold mt-2 ml-4">Bring your campaign to life</span>
+                <span class="headline font-weight-bold mt-2 ml-4">Start your charity campaign</span>
               </v-card-title>
               <v-card-text class="pt-0">
                 <v-container class="pt-0" grid-list-md>
@@ -26,12 +26,12 @@
                       <v-textarea label="Description" persistent-hint v-model="newCampaign.description">
                       </v-textarea>
                     </v-flex>
-                    <v-flex xs12 sm6>
-                      <v-text-field label="Amount Needed (ETH)" type="number" step="0.0001" min="0" v-model="newCampaign.amountGoal">
+                    <v-flex xs12 >
+                      <v-text-field label="Amount (ETH)" type="number" step="0.0001" min="0" v-model="newCampaign.amountGoal">
                       </v-text-field>
                     </v-flex>
-                    <v-flex xs12 sm6>
-                      <v-text-field label="Duration (in days)" min="1" type="number" v-model="newCampaign.duration">
+                    <v-flex xs12>
+                      <v-text-field label="Duration in days" min="1" type="number" v-model="newCampaign.duration">
                       </v-text-field>
                     </v-flex>
                   </v-layout>
@@ -75,6 +75,7 @@
               <v-card
                 slot-scope="{ hover }"
                 :class="`elevation-${hover ? 10 : 2}`"
+                style="max-width: 400px;"
               >
                 <v-card-title primary-title>
                   <div>
@@ -109,11 +110,13 @@
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.currentAmount / 10**18 }} ETH
                   </span>
-                  <v-progress-linear
+                  <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.currentAmount / campaign.goalAmount) * 100"
-                  ></v-progress-linear>
+                    size="150"
+                    width="10"
+                  ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
@@ -148,6 +151,7 @@
               <v-card
                 slot-scope="{ hover }"
                 :class="`elevation-${hover ? 10 : 2}`"
+                style="max-width: 400px;"
               >
                 <v-card-title primary-title>
                   <div>
@@ -185,6 +189,7 @@
                     type="number"
                     step="0.0001"
                     min="0"
+                    style="min-width: 200px;"
                     v-model="campaign.fundAmount"
                   ></v-text-field>
                   <v-btn
@@ -201,6 +206,7 @@
                     class="mt-3"
                     color="brown darken-1 white--text"
                     @click="getRefundFundRaising(index)"
+                    style="min-width: 200px;"
                     :loading="campaign.isLoading"
                   >
                     Get refund
@@ -210,11 +216,13 @@
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.currentAmount / 10**18 }} ETH
                   </span>
-                  <v-progress-linear
+                  <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.currentAmount / campaign.goalAmount) * 100"
-                  ></v-progress-linear>
+                    size="150"
+                    width="10"
+                  ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
@@ -248,6 +256,7 @@
               <v-card
                 slot-scope="{ hover }"
                 :class="`elevation-${hover ? 10 : 2}`"
+                style="max-width: 400px;"
               >
                 <v-card-title primary-title>
                   <div>
@@ -277,11 +286,11 @@
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
-                  <v-progress-linear
+                  <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.goalAmount / campaign.goalAmount) * 100"
-                  ></v-progress-linear>
+                  ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.goalAmount / 10**18 }} ETH
                   </span>
@@ -315,6 +324,7 @@
               <v-card
                 slot-scope="{ hover }"
                 :class="`elevation-${hover ? 10 : 2}`"
+                style="max-width: 400px;"
               >
                 <v-card-title primary-title>
                   <div>
@@ -350,6 +360,7 @@
                     class="mt-3"
                     color="brown darken-1 white--text"
                     @click="getRefundFundRaising(index)"
+                    style="min-width: 200px;"
                     :loading="campaign.isLoading"
                   >
                     Get refund
@@ -359,11 +370,13 @@
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.currentAmount / 10**18 }} ETH
                   </span>
-                  <v-progress-linear
+                  <v-progress-circular
                     height="10"
                     :color="stateMap[campaign.currentState].color"
                     :value="(campaign.currentAmount / campaign.goalAmount) * 100"
-                  ></v-progress-linear>
+                    size="150"
+                    width="10"
+                  ></v-progress-circular>
                   <span class="font-weight-bold" style="width: 200px;">
                     {{ campaign.goalAmount / 10**18 }} ETH
                   </span>

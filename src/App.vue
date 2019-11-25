@@ -4,16 +4,16 @@
       <v-container>
         <v-layout text-xs-center wrap>
           <v-flex mb-4>
-            <h1 class="display-2 font-weight-bold mb-3">Crowdfunding for Charity</h1>
+            <h1 class="display-2 font-weight-bold mb-3">Ajude o Banhado</h1>
           </v-flex>
         </v-layout>
 
         <v-layout row justify-center>
           <v-dialog v-model="startCampaignDialog" max-width="600px" persistent>
-            <v-btn slot="activator" color="primary" dark>Start a Campaign</v-btn>
+            <v-btn slot="activator" color="primary" dark>Começar uma campanha</v-btn>
             <v-card>
               <v-card-title>
-                <span class="headline font-weight-bold mt-2 ml-4">Start your charity campaign</span>
+                <span class="headline font-weight-bold mt-2 ml-4">Comece sua campanha beneficente</span>
               </v-card-title>
               <v-card-text class="pt-0">
                 <v-container class="pt-0" grid-list-md>
@@ -40,10 +40,10 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" flat @click="startCampaignDialog = false; newCampaign.isLoading = false;">
-                  Close
+                  Fechar
                 </v-btn>
                 <v-btn color="blue darken-1" flat @click="startCampaign" :loading="newCampaign.isLoading">
-                  Save
+                  Salvar
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -52,7 +52,7 @@
       </v-container>
 
       <v-container style="max-width: 400px;" grid-list-lg>
-        <h1 class="display-1 font-weight-bold mb-3">Campaigns Pending Approval</h1>
+        <h1 class="display-1 font-weight-bold mb-3">Campanhas esperando aprovação</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === false" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
@@ -66,7 +66,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" flat="flat" @click="campaignData[index].dialog = false">
-                    Close
+                    Fechar
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -85,11 +85,11 @@
                     <br/>
                     <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
-                    <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
+                    <small>Aberto até: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>
-                    <small>Goal of <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
-                    <small v-if="campaign.currentState == 1">wasn't achieved before deadline</small>
-                    <small v-if="campaign.currentState == 2">has been achieved</small>
+                    <small>Objetivo <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
+                    <small v-if="campaign.currentState == 1">Objetivo não alcançado até o fim da campanha</small>
+                    <small v-if="campaign.currentState == 2">Objetivo foi alcançado</small>
                   </div>
                 </v-card-title>
                 <v-flex
@@ -100,7 +100,7 @@
                     @click="vote(index)"
                     :loading="campaign.isLoading"
                   >
-                    vote
+                    votar
                   </v-btn>
                 </v-flex>
                 <v-card-actions style="margin-left: 30px" v-if="campaign.currentState == 0" class="text-xs-center">
@@ -137,7 +137,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" flat="flat" @click="campaignData[index].dialog = false">
-                    Close
+                    Fechar
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -163,14 +163,14 @@
                     <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
                     <span class="font-weight-bold"">
-                      Donations: {{ campaign.campaignDonators}}
+                      Doações: {{ campaign.campaignDonators}}
                     </span>
                     <br/><br/>
-                    <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
+                    <small>Aberto até: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>
-                    <small>Goal of <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
-                    <small v-if="campaign.currentState == 1">wasn't achieved before deadline</small>
-                    <small v-if="campaign.currentState == 2">has been achieved</small>
+                    <small>Objetivo <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
+                    <small v-if="campaign.currentState == 1">Objetivo não alcançado até o fim da campanha</small>
+                    <small v-if="campaign.currentState == 2">Objetivo foi alcançado</small>
                   </div>
                 </v-card-title>
                 <v-flex
@@ -238,7 +238,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" flat="flat" @click="campaignData[index].dialog = false">
-                    Close
+                    Fechar
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -263,11 +263,11 @@
                     <br/>
                     <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
-                    <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
+                    <small>Aberto até: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>
-                    <small>Goal of <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
-                    <small v-if="campaign.currentState == 1">wasn't achieved before deadline</small>
-                    <small v-if="campaign.currentState == 2">has been achieved</small>
+                    <small>Objetivo <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
+                    <small v-if="campaign.currentState == 1">Objetivo não alcançado até o fim da campanha</small>
+                    <small v-if="campaign.currentState == 2">Objetivo foi alcançado</small>
                   </div>
                 </v-card-title>
                 <v-card-actions style="margin-left: 30px" v-if="campaign.currentState == 2" class="text-xs-center">
@@ -303,7 +303,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" flat="flat" @click="campaignData[index].dialog = false">
-                    Close
+                    Fechar
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -328,11 +328,11 @@
                     <br/>
                     <span>{{ campaign.campaignDesc }}</span>
                     <br/><br/>
-                    <small>Up Until: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
+                    <small>Aberto até: <b>{{ new Date(campaign.deadline * 1000) }}</b></small>
                     <br/><br/>
-                    <small>Goal of <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
-                    <small v-if="campaign.currentState == 1">wasn't achieved before deadline</small>
-                    <small v-if="campaign.currentState == 2">has been achieved</small>
+                    <small>Objetivo <b>{{ campaign.goalAmount / 10**18 }} ETH </b></small>
+                    <small v-if="campaign.currentState == 1">Objetivo não alcançado até o fim da campanha</small>
+                    <small v-if="campaign.currentState == 2">Objetivo foi alcançado</small>
                   </div>
                 </v-card-title>
                 <v-flex

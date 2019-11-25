@@ -4,7 +4,7 @@
       <v-container>
         <v-layout text-xs-center wrap>
           <v-flex mb-4>
-            <h1 class="display-2 font-weight-bold mb-3">Ajude o Banhado</h1>
+            <h1 style="color: white;" class="display-2 font-weight-bold mb-3">Ajude o Banhado</h1>
           </v-flex>
         </v-layout>
 

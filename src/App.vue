@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3gwbFfjdHuTRLcTwPKvmyukXPKyhvF650aaVevI5fQrTL7wgC'); background-repeat: no-repeat; background-size: cover;" >
+  <v-app style="background-image: url('http://meon.com.br/files/media/originals/banhado.jpg'); background-repeat: no-repeat; background-size: cover;" >
     <v-content>
       <v-container>
         <v-layout text-xs-center wrap>

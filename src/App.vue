@@ -52,7 +52,7 @@
       </v-container>
 
       <v-container style="max-width: 400px;" grid-list-lg>
-        <h1 class="display-1 font-weight-bold mb-3">Campanhas esperando aprovação</h1>
+        <h1 style="color: white;" class="display-1 font-weight-bold mb-3">Campanhas esperando aprovação</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === false" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
@@ -123,7 +123,7 @@
       </v-container>
 
       <v-container style="max-width: 400px;" grid-list-md>
-        <h1 class="display-1 font-weight-bold mb-3">Campanhas em Andamento</h1>
+        <h1 style="color: white;" class="display-1 font-weight-bold mb-3">Campanhas em Andamento</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Ongoing' && campaign.approved === true" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
@@ -224,7 +224,7 @@
         </v-layout>
       </v-container>
       <v-container style="max-width: 400px;" grid-list-lg>
-        <h1 class="display-1 font-weight-bold mb-3">Campanhas Finalizadas</h1>
+        <h1 style="color: white;" class="display-1 font-weight-bold mb-3">Campanhas Finalizadas</h1>
         <v-layout align-center="true" align-self-center="true" row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Completed'" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
@@ -289,7 +289,7 @@
         </v-layout>
       </v-container>
       <v-container style="max-width: 400px;" grid-list-lg>
-        <h1 class="display-1 font-weight-bold mb-3">Campanhas Expiradas</h1>
+        <h1 style="color: white;" class="display-1 font-weight-bold mb-3">Campanhas Expiradas</h1>
         <v-layout row wrap>
           <v-flex v-for="(campaign, index) in campaignData" v-if="stateMap[campaign.currentState].text === 'Expired'" :key="index" xs12>
             <v-dialog v-model="campaign.dialog" width="800">
